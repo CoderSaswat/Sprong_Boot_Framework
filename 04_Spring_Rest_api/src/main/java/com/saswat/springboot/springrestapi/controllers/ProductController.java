@@ -2,6 +2,8 @@ package com.saswat.springboot.springrestapi.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +19,11 @@ public class ProductController {
 	@Autowired
 	ProductRepository repository;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
+
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public List<Product> getProducts() {
+		LOGGER.info("fetching all the products");
 		return repository.findAll();
 	}
 
